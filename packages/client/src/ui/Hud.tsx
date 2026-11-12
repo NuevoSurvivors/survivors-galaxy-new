@@ -10,6 +10,8 @@ import { MakeWindow } from "./MakeWindow.tsx";
 import { GameMenu } from "./Screens.tsx";
 import { TutorialPanel } from "./Tutorial.tsx";
 import { RecruitAstronaut } from "./RecruitAstronaut.tsx";
+import { GalaxyNetwork } from "./GalaxyNetwork.tsx";
+import { AdBanner } from "./AdPlacements.tsx";
 
 export function Hud() {
   const [makeOpen, setMakeOpen] = useState(false);
@@ -55,9 +57,11 @@ export function Hud() {
         <ColonistBar />
       </div>
       <Toasts />
+      <AdBanner />
       <Toolbar />
       <GameMenu />
       <RecruitAstronaut />
+      <GalaxyNetwork />
       {s.tutorial && <TutorialPanel alerts={s.alerts} />}
       {!s.tutorial && ((s.goals.length > 0 && !s.goals.every((g) => g.done)) || s.alerts.length > 0 || s.story || s.spaceMissions.length > 0) && (
         <aside class="goals" data-testid="goals">

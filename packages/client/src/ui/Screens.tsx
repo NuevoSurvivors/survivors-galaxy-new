@@ -11,6 +11,7 @@ import { clearMark, SESSION_SLOT } from "../session.ts";
 import { TICKS_PER_SECOND, unpackSave } from "@wc/sim";
 import { actions, useStore } from "./store.ts";
 import { Mods } from "./Mods.tsx";
+import { MainMenuAd } from "./AdPlacements.tsx";
 import { installedMods } from "../mods.ts";
 
 export interface NewGameOptions {
@@ -192,23 +193,26 @@ export function TitleScreen({ hasAutosave }: { hasAutosave: boolean }) {
           {t("title.free")}
         </a>
         {view === "main" && (
-          <div class="mainbtns">
-            {hasAutosave && (
-              <button class="primary" data-testid="continue" onClick={() => loadSlot("autosave")}>
-                {t("title.continue")}
+          <>
+            <div class="mainbtns">
+              {hasAutosave && (
+                <button class="primary" data-testid="continue" onClick={() => loadSlot("autosave")}>
+                  {t("title.continue")}
+                </button>
+              )}
+              <button class={hasAutosave ? "" : "primary"} data-testid="new-game-btn" onClick={() => setView("new")}>
+                {t("title.new")}
               </button>
-            )}
-            <button class={hasAutosave ? "" : "primary"} data-testid="new-game-btn" onClick={() => setView("new")}>
-              {t("title.new")}
-            </button>
-            <button data-testid="tutorial-btn" onClick={startTutorial} title={t("scen.tutorial.desc")}>
-              {t("title.tutorial")}
-            </button>
-            <button onClick={() => setView("load")}>{t("title.load")}</button>
-            <button data-testid="mods-btn" onClick={() => setView("mods")}>
-              {t("title.mods")}
-            </button>
-          </div>
+              <button data-testid="tutorial-btn" onClick={startTutorial} title={t("scen.tutorial.desc")}>
+                {t("title.tutorial")}
+              </button>
+              <button onClick={() => setView("load")}>{t("title.load")}</button>
+              <button data-testid="mods-btn" onClick={() => setView("mods")}>
+                {t("title.mods")}
+              </button>
+            </div>
+            <MainMenuAd />
+          </>
         )}
         {view === "mods" && (
           <div class="screen-body">

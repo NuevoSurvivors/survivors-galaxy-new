@@ -692,6 +692,18 @@ async function boot() {
     actions.selectPawn(pawn.id, true);
     return true;
   };
+  actions.marketTake = (itemId, count) => {
+    if (!Number.isSafeInteger(count) || count <= 0 || !game.reg.items.has(itemId) || sim.countItems(game, itemId) < count) return false;
+    let remaining = count;
+    for (const stack of [...game.items.values()].filter((entry) => entry.layer >= 0 && game.reg.items.list[entry.def].id === itemId)) {
+      remaining -= sim.takeFromStack(game, stack.id, remaining);
+      if (remaining === 0) return true;
+    }
+    return false;
+  };
+  actions.marketGive = (itemId, count) => {
+    sim.dropItems(game, itemId, count, game.home.layer, game.home.x, game.home.y);
+  };
 
   camera.onTap = (wx, wy, touch) => {
     if (store.state.pawnMenu) return actions.pawnMenuPick(null);
@@ -1312,6 +1324,7 @@ async function boot() {
           const count = items.reduce((n, i) => n + sim.storedCount(game, i), 0);
           return { id, count, loose: items.reduce((n, i) => n + sim.countItems(game, i), 0) - count };
         }),
+        marketResources: ["wood", "stone", "scrap"].map((id) => ({ id, count: sim.countItems(game, id) })),
       });
       drainMessages(clock);
       if (fpsTime > 1) fpsFrames = fpsTime = 0;

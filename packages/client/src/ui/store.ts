@@ -196,6 +196,7 @@ export interface UiState {
   /** Story chapter banner (B9): shown at the top until `until` (UI clock seconds). */
   banner: { kicker: string; title: string; until: number } | null;
   resources: { id: string; count: number; loose: number }[];
+  marketResources: { id: string; count: number }[];
   /** Days all the colony's food lasts (null with nobody to feed). */
   foodDays: number | null;
   /** Open toolbar menu. */
@@ -263,6 +264,7 @@ class Store {
     toasts: [],
     banner: null,
     resources: [],
+    marketResources: [],
     foodDays: null,
     menu: null,
     toolLabel: null,
@@ -345,6 +347,8 @@ export const actions = {
   setResearch: (_id: string | null) => {},
   setArt: (_patch: Partial<{ style: ArtStyle; palette: string; size: ArtSize }>) => {},
   recruit: (_role: import("@wc/sim").RecruitRole) => false,
+  marketTake: (_item: string, _count: number) => false,
+  marketGive: (_item: string, _count: number) => {},
   toggleMenu: () => store.set({ menuOpen: !store.state.menuOpen }),
   saveGame: async (_name: string | null): Promise<string> => "",
   setVolume: (_k: "music" | "sfx", _v: number) => {},

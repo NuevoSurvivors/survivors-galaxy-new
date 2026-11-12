@@ -196,6 +196,60 @@ button.on { background: var(--rust); color: var(--ink); border-color: var(--rust
 .recruit-options button.on small { color: #d9d4ed; }
 .recruit-pay { width: 100%; margin-top: 14px; min-height: 46px; color: #090b18; background: #a98dff; border-color: #c3adff; font-weight: 700; }
 .recruit-error { margin: 10px 0 0; color: #ff9aaf; font-size: 13px; }
+.recruit-live-pay { width: 100%; margin-top: 8px; min-height: 42px; border-color: #53618a; color: #d9d4ed; background: rgba(17, 19, 41, .96); }
+.recruit-invoice { display: grid; gap: 6px; margin-top: 8px; font-size: 13px; }
+.recruit-invoice p { margin: 0; color: #b0a3c9; }
+.recruit-invoice a { color: #c3adff; }
+.galaxy-network-trigger { position: absolute; right: 8px; bottom: calc(env(safe-area-inset-bottom, 0px) + 108px); z-index: 6; border-color: #53618a; color: #d9d4ed;
+  background: linear-gradient(135deg, rgba(17, 19, 41, .96), rgba(59, 34, 74, .96)); box-shadow: 0 0 12px rgba(169, 141, 255, .18); font: 600 12px var(--mono); }
+.galaxy-network { position: absolute; right: 8px; bottom: calc(env(safe-area-inset-bottom, 0px) + 156px); z-index: 8; display: grid; gap: 8px;
+  width: min(390px, calc(100vw - 16px)); max-height: min(68vh, calc(100vh - 180px)); overflow: hidden; padding: 10px;
+  border: 1px solid #53618a; background: linear-gradient(145deg, rgba(22, 23, 48, .98), rgba(9, 11, 24, .98)); color: #d9d4ed; box-shadow: 0 8px 32px rgba(0, 0, 0, .48); }
+.galaxy-network-head { display: flex; justify-content: space-between; align-items: center; }
+.galaxy-network-head div { display: grid; }
+.galaxy-network-head b { color: #d9d4ed; font: 600 14px var(--mono); }
+.galaxy-network-head small { color: #a98dff; font-size: 10px; }
+.galaxy-close { min-width: 32px; min-height: 30px; background: transparent; }
+.galaxy-tabs { display: flex; gap: 4px; }
+.galaxy-tabs button { flex: 1; min-width: 0; padding: 4px 6px; font-size: 11px; }
+.galaxy-tabs button.on, .galaxy-primary { background: #8270cb; color: #090b18; border-color: #a98dff; font-weight: 700; }
+.galaxy-chat, .galaxy-market { display: grid; gap: 8px; min-height: 0; overflow-y: auto; }
+.galaxy-commander, .galaxy-sell-form label, .galaxy-wallet-modal label { display: grid; gap: 3px; color: #b0a3c9; font-size: 11px; }
+.galaxy-network input, .galaxy-network select, .galaxy-wallet-modal input, .galaxy-wallet-modal select { min-width: 0; min-height: 34px; padding: 4px 7px; color: #eee9ff; background: #111329; border: 1px solid #343d60; }
+.galaxy-messages { display: grid; align-content: start; gap: 5px; max-height: 170px; min-height: 64px; overflow-y: auto; padding: 6px; border: 1px solid #343d60; background: rgba(9, 11, 24, .72); }
+.galaxy-messages p { display: grid; grid-template-columns: 1fr auto; margin: 0; font-size: 12px; }
+.galaxy-messages p span { grid-column: 1 / -1; overflow-wrap: anywhere; }
+.galaxy-messages small, .galaxy-empty { color: #8e87a9; font-size: 10px; }
+.galaxy-empty { margin: 4px 0; text-align: center; }
+.galaxy-chat-form { display: grid; grid-template-columns: 1fr auto; gap: 4px; }
+.galaxy-chat-form input { width: 100%; }
+.galaxy-chat-form button { min-width: 68px; min-height: 34px; }
+.galaxy-balance { color: #b0a3c9; font-size: 12px; }
+.galaxy-balance b { color: #c3adff; }
+.galaxy-sell-form { display: grid; grid-template-columns: 1fr 76px 95px; gap: 6px; align-items: end; }
+.galaxy-sell-form button { grid-column: 1 / -1; min-height: 34px; }
+.galaxy-fee-note { margin: 0; color: #8e87a9; font-size: 10px; }
+.galaxy-offers { display: grid; gap: 5px; overflow-y: auto; }
+.galaxy-offer { display: grid; grid-template-columns: 1fr auto 52px auto; gap: 5px; align-items: center; padding: 6px; border: 1px solid #343d60; background: rgba(9, 11, 24, .72); }
+.galaxy-offer > div { display: grid; }
+.galaxy-offer small { color: #8e87a9; font-size: 10px; }
+.galaxy-offer-price { text-align: right; font-size: 11px; }
+.galaxy-offer input { width: 52px; min-height: 32px; padding: 2px; }
+.galaxy-offer button { min-width: 68px; min-height: 32px; padding: 2px 6px; font-size: 11px; }
+.galaxy-error { margin: 0; color: #ff9aaf; font-size: 12px; }
+.galaxy-notice { margin: 0; color: #9de0c2; font-size: 12px; }
+.galaxy-wallet-backdrop { position: fixed; inset: 0; z-index: 15; display: grid; place-items: center; padding: 12px; background: rgba(3, 5, 16, .78); }
+.galaxy-wallet-modal { position: relative; display: grid; gap: 10px; width: min(420px, 100%); max-height: 90vh; overflow-y: auto; padding: 22px; border: 1px solid #53618a;
+  background: radial-gradient(ellipse at 50% 0%, #26244b, #111329 68%, #090b18); box-shadow: 0 0 40px rgba(83, 97, 138, .24); }
+.galaxy-wallet-modal h2 { margin: 0; color: #d9d4ed; }
+.galaxy-wallet-modal p { margin: 0; color: #b0a3c9; font-size: 12px; }
+.galaxy-wallet-modal form { display: grid; gap: 8px; }
+.galaxy-wallet-modal form + form { border-top: 1px solid #343d60; padding-top: 8px; }
+.galaxy-wallet-modal .galaxy-close { position: absolute; top: 8px; right: 8px; }
+.ad-placeholder { border: 1px dashed rgba(169, 141, 255, .55); color: #a69bbd; background: rgba(13, 14, 33, .72); font: 10px var(--mono); letter-spacing: .04em; text-align: center; }
+.ad-placeholder-menu { width: min(320px, 100%); justify-self: center; padding: 9px 10px; }
+.ad-placeholder-banner { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 54px); left: 50%; z-index: 0; width: min(260px, 36vw); height: 22px;
+  overflow: hidden; transform: translateX(-50%); pointer-events: none; line-height: 20px; white-space: nowrap; }
 /* Messages sit bottom right, above the layer box, so they never hide behind the goals panel. */
 .toasts { top: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 64px); }
 #ui, #game { user-select: none; -webkit-user-select: none; }
@@ -240,6 +294,9 @@ input[type="range"], input[type="checkbox"] { accent-color: var(--rust); }
 @media (max-width: 640px) {
   .nowplaying { display: none; }
   .goals { display: none; }
+  .galaxy-network { left: 8px; right: 8px; width: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 154px); max-height: 58vh; }
+  .galaxy-network-trigger { right: 8px; bottom: calc(env(safe-area-inset-bottom, 0px) + 108px); }
+  .ad-placeholder-banner { width: min(200px, 55vw); top: calc(env(safe-area-inset-top, 0px) + 50px); }
   .slider { grid-template-columns: 100px 1fr 44px; }
   .toolbar { left: 8px; right: 8px; transform: none; }
   .layerbox { bottom: calc(env(safe-area-inset-bottom, 0px) + 60px); }
@@ -276,6 +333,10 @@ body.cinematic #ui { display: none; }
 .worldmenu .neg { color: #ff8a70; }
 @media (max-width: 420px) {
   .toolbar button { font-size: 12px; padding-left: 4px; padding-right: 4px; }
+  .galaxy-offer { grid-template-columns: 1fr auto 52px; }
+  .galaxy-offer button { grid-column: 1 / -1; }
+  .galaxy-sell-form { grid-template-columns: 1fr 76px; }
+  .galaxy-sell-form label:nth-child(3) { grid-column: 1 / -1; }
 }
 
 /* Trade (A9) */
