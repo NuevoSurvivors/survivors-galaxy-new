@@ -61,6 +61,23 @@ export const INK_SETS: Record<string, Record<Ink, string>> = {
     skinDark: "#9c7550",
     hair: "#3b3424",
   },
+  galaxy: {
+    soot: "#090b18",
+    bone: "#d9d4ed",
+    paper: "#a99fc9",
+    rust: "#a64f9d",
+    rustDark: "#572b69",
+    teal: "#477ca1",
+    tealDark: "#294764",
+    ochre: "#8d72bd",
+    ochreDark: "#554477",
+    slate: "#65749b",
+    slateDark: "#343d60",
+    glow: "#a98dff",
+    skin: "#d6a5a1",
+    skinDark: "#9b6b78",
+    hair: "#29233d",
+  },
 };
 
 export type Pt = [number, number];

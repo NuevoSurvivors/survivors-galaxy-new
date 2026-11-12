@@ -1,6 +1,6 @@
 import { Application, Container, Graphics } from "pixi.js";
 import { h, render } from "preact";
-import { applyMods, loadCoreContent, t } from "@wc/data";
+import { applyMods, loadCoreContent, setLanguage, t } from "@wc/data";
 import { enabledPacks, setModErrors } from "./mods.ts";
 import { readMark, SESSION_SLOT, writeMark } from "./session.ts";
 import {
@@ -58,7 +58,7 @@ function darkness(hour: number): number {
   return 1 - (hour - 4) / 3;
 }
 
-/** Art settings: URL (?style=pixel&palette=ash&px=32) wins, then saved choice, then Salvage Print, rust, 16. */
+/** Art settings: URL (?style=pixel&palette=ash&px=32) wins, then saved choice, then Salvage Print, galaxy, 16. */
 function loadArt(params: URLSearchParams): ArtSettings {
   let saved: Partial<ArtSettings>;
   try {
@@ -66,7 +66,7 @@ function loadArt(params: URLSearchParams): ArtSettings {
   } catch {
     saved = {};
   }
-  const palette = params.get("palette") ?? saved.palette ?? "rust";
+  const palette = params.get("palette") ?? saved.palette ?? "galaxy";
   const want = params.get("px") ?? saved.size ?? "16";
   const size = ART_SIZES.find((z) => z === want) ?? "16";
   const wantStyle = params.get("style") ?? saved.style ?? "print";
@@ -92,6 +92,7 @@ function optionsFromParams(params: URLSearchParams) {
 }
 
 async function boot() {
+  setLanguage("es");
   const params = new URLSearchParams(location.search);
   // Mods (B7): enabled packs go on top of the core content; bad packs are left out and shown in the mod list.
   const modded = applyMods(loadCoreContent(), enabledPacks());
@@ -142,7 +143,7 @@ async function boot() {
 
   const app = new Application();
   const host = document.getElementById("game")!;
-  await app.init({ resizeTo: host, background: "#1b1714", antialias: false, autoDensity: true, resolution: Math.min(window.devicePixelRatio, 2) });
+  await app.init({ resizeTo: host, background: "#090b18", antialias: false, autoDensity: true, resolution: Math.min(window.devicePixelRatio, 2) });
   host.appendChild(app.canvas);
 
   const art: ArtSettings = loadArt(params);

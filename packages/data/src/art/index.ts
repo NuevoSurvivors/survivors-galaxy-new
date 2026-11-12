@@ -14,6 +14,7 @@ export const PALETTES: Record<string, string[]> = {
   rust: ["#1b1714", "#3a2e26", "#5c4636", "#84603f", "#b0834e", "#d6ab6b", "#efd8a4", "#f6efe0", "#6b2b1a", "#a8481a", "#d9742e", "#4a5a3a", "#7a8a4e", "#3d4a52", "#6f8088", "#9fd14a"],
   toxic: ["#0f1410", "#1f2a1e", "#34452f", "#4f6644", "#73895c", "#a3b57a", "#d4dca8", "#f1f3dc", "#5a3a22", "#8c6236", "#e9533b", "#4f8a2a", "#7fd12a", "#4d6670", "#8aa1a6", "#c6ff3a"],
   ash: ["#121519", "#232930", "#39424c", "#56616d", "#7b8794", "#a6b0ba", "#d0d6dc", "#f0f2f4", "#8a3b2e", "#c2603f", "#e3c25a", "#4f6b5a", "#8fae7e", "#3b4f63", "#6d86a0", "#b8e05a"],
+  galaxy: ["#090b18", "#111329", "#1b1b38", "#26244b", "#38305e", "#514274", "#70608e", "#b0a3c9", "#3b224a", "#704078", "#b26aab", "#182d44", "#315873", "#20243f", "#53618a", "#a98dff"],
 };
 
 /** Shirt color ramps for survivors (replace indices 8, 9, 10 of the survivor sprite). */

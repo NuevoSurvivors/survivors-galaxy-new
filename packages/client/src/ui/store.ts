@@ -271,7 +271,7 @@ class Store {
     weather: "clear",
     research: [],
     toolRot: 0,
-    art: { style: "print", palette: "rust", size: "16" },
+    art: { style: "print", palette: "galaxy", size: "16" },
     menuOpen: false,
     volume: { music: 0.6, sfx: 0.7 },
     uiScale: 1,

@@ -9,10 +9,12 @@ test("title screen, new game, save and load", async ({ page }, info) => {
   await page.screenshot({ path: `artifacts/screens/${info.project.name}-title.png` });
   await page.getByTestId("new-game-btn").click();
   await expect(page.getByTestId("new-game")).toBeVisible();
+  await expect(page.getByTestId("scen-lone")).toHaveClass(/on/);
   await page.locator("#ng-seed").fill("menu-test");
   await page.getByTestId("start-game").click();
   await page.waitForFunction(() => (window as any).__game?.ready === true);
   expect(await page.evaluate(() => (window as any).__game.game.opts.seed)).toBe("menu-test");
+  expect(await page.evaluate(() => [...(window as any).__game.game.pawns.values()].filter((p: any) => p.faction === "colony").length)).toBe(1);
   // Goals: a side panel on desktop, inside the menu on phones.
   if (info.project.name === "desktop") await expect(page.getByTestId("goals")).toBeVisible();
 
@@ -22,15 +24,15 @@ test("title screen, new game, save and load", async ({ page }, info) => {
   await page.getByTestId("menu-btn").click();
   await expect(page.getByTestId("game-menu")).toBeVisible();
   await page.getByTestId("save-now").click();
-  await expect(page.getByTestId("game-menu")).toContainText("Saved:");
+  await expect(page.getByTestId("game-menu")).toContainText("Guardado:");
 
   // Palette switch works live.
-  await page.getByText("Settings").click();
+  await page.getByText("Ajustes").click();
   await page.getByTestId("palette-toxic").click();
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem("wc-art") ?? "{}").palette)).toBe("toxic");
 
   // Load the save: the game comes back at the saved tick.
-  await page.getByText("Save & load").click();
+  await page.getByText("Guardar y cargar").click();
   await page.locator('[data-testid^="slot-save-"]').first().click();
   await page.waitForFunction(() => (window as any).__game?.ready === true);
   const loaded = await page.evaluate(() => (window as any).__game.game.tick);

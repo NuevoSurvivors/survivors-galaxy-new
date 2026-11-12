@@ -108,7 +108,7 @@ function modLines(): string[] {
 }
 
 function NewGame({ onBack }: { onBack: () => void }) {
-  const [o, setO] = useState<NewGameOptions>({ storyteller: "sheriff", line: "reactor", scenario: "standard", raid: 1, mutant: 1, rad: 1, size: 200, day: 360, seed: "" });
+  const [o, setO] = useState<NewGameOptions>({ storyteller: "sheriff", line: "reactor", scenario: "lone", raid: 1, mutant: 1, rad: 1, size: 200, day: 360, seed: "" });
   const slider = (key: "raid" | "mutant" | "rad") => (
     <label class="slider">
       <span>{t(`newgame.${key}`)}</span>
@@ -293,7 +293,7 @@ export function GameMenu() {
               ))}
             </div>
             <div class="choices">
-              {["rust", "toxic", "ash"].map((p) => (
+              {["galaxy", "rust", "toxic", "ash"].map((p) => (
                 <button key={p} class={s.art.palette === p ? "on" : ""} data-testid={`palette-${p}`} onClick={() => actions.setArt({ palette: p })}>
                   <b>{t(`palette.${p}`)}</b>
                 </button>

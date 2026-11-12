@@ -29,7 +29,7 @@ test("wires and pipes run through walls and draw across them", async ({ page }, 
   await page.waitForTimeout(300);
   await page.screenshot({ path: `artifacts/screens/wall-lines-${info.project.name}.png` });
   // The Orders menu has "Remove wire/pipe"; the order marks the wall and is undone by the builders.
-  await page.getByRole("button", { name: "Orders" }).click();
+  await page.getByRole("button", { name: "Órdenes" }).click();
   await expect(page.getByTestId("order-unline")).toBeVisible();
   await page.screenshot({ path: `artifacts/screens/wall-lines-orders-${info.project.name}.png` });
   const marked = await page.evaluate(() => {

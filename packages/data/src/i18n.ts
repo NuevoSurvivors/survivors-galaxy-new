@@ -1,10 +1,11 @@
 /**
  * String tables. All player-facing text goes through t().
- * Add a language by adding i18n/<code>.json with the same keys.
+ * Add a language in i18n/<code>.json. Missing keys fall back to English.
  */
 import en from "../i18n/en.json";
+import es from "../i18n/es.json";
 
-const tables: Record<string, Record<string, string>> = { en };
+const tables: Record<string, Record<string, string>> = { en, es };
 let current: Record<string, string> = en;
 
 export function setLanguage(code: string): void {
