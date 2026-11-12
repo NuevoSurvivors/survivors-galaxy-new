@@ -224,6 +224,7 @@ export interface UiState {
   volume: { music: number; sfx: number };
   uiScale: number;
   goals: { id: string; done: boolean }[];
+  spaceMissions: { id: string; current: number; target: number; completed: boolean; unlocked: boolean; reward: { item: string; count: number }[] }[];
   /** i18n key: the next step toward the first open goal. */
   goalHint: string | null;
   /** Hours until a radiation cloud, or null. */
@@ -276,6 +277,7 @@ class Store {
     volume: { music: 0.6, sfx: 0.7 },
     uiScale: 1,
     goals: [],
+    spaceMissions: [],
     goalHint: null,
     radWarning: null,
     tutorial: null,
@@ -342,6 +344,7 @@ export const actions = {
   toggleDraft: (_id: number) => {},
   setResearch: (_id: string | null) => {},
   setArt: (_patch: Partial<{ style: ArtStyle; palette: string; size: ArtSize }>) => {},
+  recruit: (_role: import("@wc/sim").RecruitRole) => false,
   toggleMenu: () => store.set({ menuOpen: !store.state.menuOpen }),
   saveGame: async (_name: string | null): Promise<string> => "",
   setVolume: (_k: "music" | "sfx", _v: number) => {},

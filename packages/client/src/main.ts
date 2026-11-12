@@ -686,6 +686,12 @@ async function boot() {
     }
     store.set({ pawn: p ? pawnDetail(p) : null, inspect: null });
   };
+  actions.recruit = (role) => {
+    const pawn = sim.recruitSurvivor(game, role);
+    if (!pawn) return false;
+    actions.selectPawn(pawn.id, true);
+    return true;
+  };
 
   camera.onTap = (wx, wy, touch) => {
     if (store.state.pawnMenu) return actions.pawnMenuPick(null);
@@ -1123,6 +1129,7 @@ async function boot() {
       if (typeof params.site === "string") params.site = params.site.startsWith("story.") ? t(params.site) : t(`site.${params.site}`);
       if (typeof params.beat === "string") params.beat = t(params.beat);
       if (typeof params.kind === "string") params.kind = t(`pawn.${params.kind}`);
+      if (typeof params.mission === "string") params.mission = t(params.mission);
       toasts.push({ id: toastId++, text: t(m.key, params), level: m.level, until: now + TOAST_SEC, ...(m.at ? { at: m.at } : {}), ...(pauses ? { pin: true } : {}) });
     }
     // At most 4 on screen; pinned ones (why the game paused) are never pushed out.
@@ -1270,6 +1277,7 @@ async function boot() {
         weather: game.weather.kind,
         // The tutorial has its own panel: no goals beside it.
         goals: game.tutorial ? [] : sim.GOALS.map((id) => ({ id, done: !!game.goals[id] })),
+        spaceMissions: game.tutorial ? [] : sim.spaceMissionProgress(game),
         tutorial: tutorialUi(),
         alerts: sim.computeAlerts(game),
         story: storyUi(),

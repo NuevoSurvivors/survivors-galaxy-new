@@ -1,5 +1,7 @@
 # Changelog
 ## 2026-11-12
+- Translate the story, demo goal and next-step text shown in the right panel. Add eight sequential space missions that grant resource rewards and save their progress. Add a test-only astronaut recruitment window; its simulated success recruits a playable explorer or robotic engineer near the base, without a real payment (`packages/data/i18n/es.json`, `packages/sim/src/spaceMissions.ts`, `packages/sim/src/recruitment.ts`, `packages/client/src/ui/RecruitAstronaut.tsx`) — user request.
+## 2026-11-12
 - Rename the game to Survivors Galaxy, add Spanish labels for the main screens and resource names, and make the Lone Wanderer start the default in the new-game screen. Add a dark blue-purple Galaxy terrain palette as the default (`packages/data/i18n/es.json`, `packages/data/src/art/index.ts`, `packages/data/src/i18n.ts`, `packages/client/index.html`, `packages/client/src/main.ts`, `packages/client/src/render/print/kit.ts`, `packages/client/src/ui/Screens.tsx`, `packages/client/src/ui/store.ts`) — user request.
 
 ## 2026-10-15

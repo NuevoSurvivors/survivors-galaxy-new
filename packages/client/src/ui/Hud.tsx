@@ -9,6 +9,7 @@ import { Toolbar } from "./Toolbar.tsx";
 import { MakeWindow } from "./MakeWindow.tsx";
 import { GameMenu } from "./Screens.tsx";
 import { TutorialPanel } from "./Tutorial.tsx";
+import { RecruitAstronaut } from "./RecruitAstronaut.tsx";
 
 export function Hud() {
   const [makeOpen, setMakeOpen] = useState(false);
@@ -56,8 +57,9 @@ export function Hud() {
       <Toasts />
       <Toolbar />
       <GameMenu />
+      <RecruitAstronaut />
       {s.tutorial && <TutorialPanel alerts={s.alerts} />}
-      {!s.tutorial && ((s.goals.length > 0 && !s.goals.every((g) => g.done)) || s.alerts.length > 0 || s.story) && (
+      {!s.tutorial && ((s.goals.length > 0 && !s.goals.every((g) => g.done)) || s.alerts.length > 0 || s.story || s.spaceMissions.length > 0) && (
         <aside class="goals" data-testid="goals">
           {s.story && (
             <div class="story" data-testid="story">
@@ -88,6 +90,19 @@ export function Hud() {
                 </p>
               )}
             </>
+          )}
+          {s.spaceMissions.length > 0 && (
+            <section class="space-missions" data-testid="space-missions">
+              <h3>{t("mission.space.title")}</h3>
+              {s.spaceMissions.map((m, i) => (
+                <div class={`space-mission${m.completed ? " done" : m.unlocked ? " active" : " locked"}`} key={m.id} data-testid={`space-mission-${m.id}`}>
+                  <b>{m.completed ? "✓ " : `${i + 1}. `}{t(`mission.space.${m.id}.title`)}</b>
+                  <small>{t(`mission.space.${m.id}.desc`)}</small>
+                  <small>{m.completed ? t("mission.space.completed") : m.unlocked ? t("mission.space.progress", { current: m.current, target: m.target }) : t("mission.space.locked")}</small>
+                  <small>{t("mission.space.reward", { reward: m.reward.map((r) => `${r.count} ${t(`item.${r.item}`)}`).join(", ") })}</small>
+                </div>
+              ))}
+            </section>
           )}
           {s.alerts.length > 0 && (
             <div class="alerts" data-testid="alerts">

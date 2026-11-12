@@ -35,6 +35,7 @@ import { newPlot, startPlot, tickPlot, type Plot } from "./plot.ts";
 import { applyScenario, startSurvivors } from "./scenarios.ts";
 import { tickGoals } from "./goals.ts";
 import { buildTutorialMap, setupTutorialStart, tickTutorial, TUTORIAL_OPTIONS, type TutorialState } from "./tutorial.ts";
+import { tickSpaceMissions } from "./spaceMissions.ts";
 
 /** Sim ticks per real second at 1x speed. */
 export const TICKS_PER_SECOND = 20;
@@ -141,6 +142,8 @@ export class Game {
   readonly story: StoryState = { points: 0, lastThreat: 0, lastGood: 0, log: [], raidsSurvived: 0 };
   /** Demo goals reached (see goals.ts). */
   goals: Record<string, boolean> = {};
+  /** Completed space missions, kept by id so mission rewards are never repeated after loading. */
+  spaceMissions: string[] = [];
   /** Tutorial progress (tutorial scenario only). */
   tutorial: TutorialState | null = null;
   /** Turret cooldowns by thing id. */
@@ -406,6 +409,7 @@ export class Game {
     tickTraps(this);
     tickFoodWarning(this);
     tickGoals(this);
+    tickSpaceMissions(this);
     tickTutorial(this);
   }
 }

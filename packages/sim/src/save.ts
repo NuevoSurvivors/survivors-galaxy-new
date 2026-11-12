@@ -51,6 +51,7 @@ export interface SaveFile {
   rooms: { cells: number[]; temp: number }[];
   deaths: Game["deaths"];
   goals: Record<string, boolean>;
+  spaceMissions?: string[];
   tutorial?: TutorialState | null;
   opinions?: [string, number][];
   world?: WorldMap | null;
@@ -142,6 +143,7 @@ export function saveGame(game: Game): SaveFile {
     }),
     deaths: [...game.deaths],
     goals: { ...game.goals },
+    spaceMissions: [...game.spaceMissions],
     tutorial: game.tutorial ? { ...game.tutorial, flags: [...game.tutorial.flags] } : null,
     opinions: [...game.opinions],
     world: game.world,
@@ -256,6 +258,7 @@ export function loadGame(content: Content, raw: SaveFile): Game {
   for (const [k, v] of data.fires) game.fires.set(k, v);
   game.deaths.push(...data.deaths);
   game.goals = { ...(data.goals ?? {}) };
+  game.spaceMissions = [...(data.spaceMissions ?? [])];
   game.tutorial = data.tutorial ? { ...data.tutorial, flags: [...data.tutorial.flags] } : null;
   for (const [k, v] of data.opinions ?? []) game.opinions.set(k, v);
   game.world = data.world ?? null;
